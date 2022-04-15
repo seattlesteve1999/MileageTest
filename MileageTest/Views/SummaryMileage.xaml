@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel ="clr-namespace:MileageManagerForms.ViewModels"              
+             x:Class="MileageManagerForms.Views.SummaryMileage" >
+
+    <ContentPage.BindingContext>
+        <ViewModel:SummaryViewModel/>
+    </ContentPage.BindingContext>
+    <Grid BackgroundColor="Purple">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="28"/>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="65"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame BackgroundColor="#2196F3" Padding="10" CornerRadius="0" Grid.ColumnSpan="7" Grid.Row="0">
+            <Label Text="View Mileage Summary" HorizontalTextAlignment="Center" TextColor="White" FontSize="25" />
+        </Frame>
+        <Button x:Name="btnDate" Text="Date" BackgroundColor="Gray" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="White" Clicked="SortByDate" Margin="6" />
+        <Button x:Name="btnMiles" Text="Miles" BackgroundColor="Gray" Grid.Row="1" Grid.Column="2" TextColor="White" Clicked="SortByMiles" Margin="6"/>
+        <Button x:Name="btnGas" Text="Gas" BackgroundColor="Gray" Grid.Row="1" Grid.Column="3" TextColor="White" Clicked="SortByGas" Margin="6"/>
+        <Button x:Name="btnMPG" Text="MPG" BackgroundColor="Gray" Grid.Row="1" Grid.Column="4" TextColor="White" Clicked="SortByMPG" Margin="6"/>
+        <Button x:Name="btnCost" Text="Cost" BackgroundColor="Gray" Grid.Row="1" Grid.Column="5" TextColor="White" Clicked="SortByCost" Margin="6"/>
+
+        <ListView x:Name="MileageView" ItemsSource="{Binding MileageSummaryFields}" SeparatorVisibility="None"  Grid.Row="2" Grid.ColumnSpan="9" BackgroundColor="Purple" SelectedItem="{Binding SelectedItem}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="35"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="65"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Small" TextColor="White" Text="{Binding StrDate}" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="2" Grid.Row="1" FontSize="Small" TextColor="White" Text="{Binding Miles}" HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="3" Grid.Row="1" FontSize="Small" TextColor="White" Text="{Binding Gas}"  HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="4" Grid.Row="1" FontSize="Small" TextColor="White" Text="{Binding MPG}"  HorizontalTextAlignment="End"/>
+                                <Label Grid.Column="5" Grid.Row="1" FontSize="Small" TextColor="White" Text="{Binding Price}" HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
