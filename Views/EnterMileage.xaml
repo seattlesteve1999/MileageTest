@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Validate="clr-namespace:MileageManagerForms.Validators"
+             xmlns:ViewMode ="clr-namespace:MileageManagerForms.ViewModels"
+             x:Class="MileageManagerForms.Views.EnterMileage">
+
+    <ContentPage.BindingContext>
+        <ViewMode:EntryViewModel/>
+    </ContentPage.BindingContext>
+    <Grid BackgroundColor="Purple">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="85"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame BackgroundColor="#2196F3" Padding="10" CornerRadius="0" Grid.ColumnSpan="7" Grid.Row="0">
+            <Label Text="Enter Mileage" HorizontalTextAlignment="Center" TextColor="White" FontSize="25" />
+        </Frame>
+        <DatePicker  x:Name="sDate" Format="MM/dd/yyyy" Date="{Binding SDate}" BackgroundColor="Gray" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextColor="White"/>
+        <Label Text="{Binding EntError}" FontAttributes="Bold" TextColor="Yellow" FontSize="Small" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" />
+        <Label Text="Miles:" TextColor="White" FontSize="Small" Grid.Row="3" Grid.Column="0" Margin="9" />
+        <Entry Text="{Binding EntMiles}" Keyboard="Numeric" FontSize="Small" BackgroundColor="White" TextColor="Black"  Grid.Row="3" Grid.Column="1" Margin="1" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="6"/>
+                <Validate:DecimalValidator />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Gas:" TextColor="White" FontSize="Small" Grid.Row="4" Grid.Column="0" Margin="12" Grid.ColumnSpan="2"/>
+        <Entry Text="{Binding EntGas}"  Keyboard="Numeric" FontSize="Small" BackgroundColor="White" TextColor="Black" Grid.Row="4" Grid.Column="1" Margin="8" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="6"/>
+                <Validate:DecimalValidator />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Cost:" TextColor="White" FontSize="Small" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="9"/>
+        <Entry Text="{Binding EntCost}"  Keyboard="Numeric" FontSize="Small" BackgroundColor="White" TextColor="Black" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="7"/>
+                <Validate:DecimalValidator />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Note:" TextColor="White" FontSize="Small" Grid.Row="4" Grid.Column="2" Margin="10" Grid.ColumnSpan="2" HorizontalTextAlignment="Start"/>
+        <Entry Text="{Binding EntNote}"  Keyboard="Default" FontSize="Small" BackgroundColor="White" TextColor="Black" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4" Margin="8">
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="20"/>               
+            </Entry.Behaviors>
+        </Entry>
+        <Button Clicked="AddMileageData" IsEnabled="True" Text="Calculate" BackgroundColor="Yellow" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" TextColor="Black" Margin="6"/>
+        <Label Text="Calculated MPG:" TextColor="White" FontSize="Small" Grid.Row="6" Grid.Column="0" Margin="0" Grid.ColumnSpan="3"/>
+        <Entry Text="{Binding EntMPG}" FontSize="Small" BackgroundColor="White" TextColor="Black" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Margin="0" IsReadOnly="true" HorizontalTextAlignment="Start"/>
+        <Label Text="Results:" TextColor="White" FontSize="Small" Grid.Row="7" Grid.Column="0" Margin="10" Grid.ColumnSpan="2"/>
+        <Entry Text="{Binding EntResults}" BackgroundColor="White" TextColor="Black" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Margin="8" IsReadOnly="true"/>
+    </Grid>
+</ContentPage>

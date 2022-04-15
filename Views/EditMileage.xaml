@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Validate="clr-namespace:MileageManagerForms.Validators"
+             xmlns:ViewMode ="clr-namespace:MileageManagerForms.ViewModels"
+             x:Class="MileageManagerForms.Views.EditMileage">
+
+    <ContentPage.BindingContext>
+        <ViewMode:EditViewModel/>
+    </ContentPage.BindingContext>
+    <Grid BackgroundColor="Purple">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="85"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame BackgroundColor="#2196F3" Padding="10" CornerRadius="0" Grid.ColumnSpan="5" Grid.Row="0">
+            <Label Text="Edit Mileage" HorizontalTextAlignment="Center" TextColor="White" FontSize="25" />
+        </Frame>
+        <Label Text="Click To Change Date:" TextColor="White" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" />
+        <DatePicker  x:Name="sDate" Format="MM/dd/yy" Date="{Binding SDate}" HorizontalOptions="EndAndExpand" BackgroundColor="Gray" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" TextColor="White"/>
+        <Label Text="{Binding EntError}" HorizontalTextAlignment="Center" TextColor="Red" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" FontSize="20" />
+        <Label Text="Miles:" TextColor="White" FontSize="Medium" Grid.Row="4" Grid.Column="0" Margin="10"/>
+        <Entry Text="{Binding EntMiles}" Keyboard="Numeric" BackgroundColor="White"  Grid.Row="4" Grid.Column="1" Margin="8" TextColor="Black">
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="6"/>
+                <Validate:DecimalValidator />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Gas Used:" TextColor="White" FontSize="Medium" Grid.Row="5" Grid.Column="0" Margin="8" Grid.ColumnSpan="2"/>
+        <Entry Text="{Binding EntGas}" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Grid.Row="5" Grid.Column="1" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="6"/>
+                <Validate:DecimalValidator />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Fill Up Cost:" TextColor="White" FontSize="Medium" Grid.Row="4" Grid.Column="2" Margin="10" Grid.ColumnSpan="3"/>
+        <Entry Text="{Binding EntCost}"  Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="1" Margin="8">
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="7"/>
+                <Validate:DecimalValidator />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Note:" TextColor="White" FontSize="Medium" Grid.Row="5" Grid.Column="2" Margin="8" Grid.ColumnSpan="2"/>
+        <Entry Text="{Binding EntNote}"  Keyboard="Default" BackgroundColor="White" TextColor="Black" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="20"/>               
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Text="{Binding EntId}"  Keyboard="Numeric" Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" Margin="8" IsVisible="false"/>
+        <Button Command="{Binding UpdateMileageData}"  IsEnabled="True" Text="Update" BackgroundColor="Yellow" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="1" TextColor="Black" Margin="8"/>
+        <Button Command="{Binding Cancel}" Text="Cancel" BackgroundColor="Yellow" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1" TextColor="Black" Margin="8"/>
+    </Grid>
+</ContentPage>
