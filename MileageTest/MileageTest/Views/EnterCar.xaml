@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Validate="clr-namespace:MileageManagerForms.Validators"
+             xmlns:ViewMode ="clr-namespace:MileageManagerForms.ViewModels"
+             x:Class="MileageManagerForms.Views.EnterCar">
+
+    <ContentPage.BindingContext>
+        <ViewMode:EnterCarViewModel/>
+    </ContentPage.BindingContext>
+    <Grid BackgroundColor="Purple">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="105"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="65"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame BackgroundColor="#2196F3" Padding="10" CornerRadius="0" Grid.ColumnSpan="6" Grid.Row="0">
+            <Label Text="Enter Car" HorizontalTextAlignment="Center" TextColor="White" FontSize="25" />
+        </Frame>
+        <Label Text="{Binding EntError}" HorizontalTextAlignment="Center" TextColor="Yellow" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" FontSize="20" />
+        <Label Text="Year:" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0" Margin="5" />
+        <Entry Text="{Binding EntYear}" Keyboard="Numeric" BackgroundColor="White" TextColor="Black"  Grid.Row="3" Grid.Column="1" Margin="0" Grid.ColumnSpan="2" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="4"/>
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Name:" TextColor="White" FontSize="Medium" Grid.Row="5" Grid.Column="0" Margin="6"/>
+        <Entry Text="{Binding EntName}" TextColor="Black" Keyboard="Default" BackgroundColor="White" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="6" >
+            <Entry.Behaviors>
+                <Validate:MaxLengthValidator  MaxLength="30"/>
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="Default:" TextColor="White" FontSize="Medium" Grid.Row="7" Grid.Column="0" Margin="5" Grid.ColumnSpan="2"/>
+        <Switch IsToggled="{Binding IsChecked, Mode=TwoWay}" Grid.Column="2" Grid.Row="7" IsVisible="true"/>
+        <Button Clicked="AddCarData" IsEnabled="True"  Text="Add Car" BackgroundColor="Yellow"  Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" TextColor="Black"/>
+        <Label Text="{Binding EntResults}" HorizontalTextAlignment="Center" TextColor="Yellow" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="6" FontSize="20" />
+    </Grid>
+</ContentPage>
